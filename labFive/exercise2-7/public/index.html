@@ -1,0 +1,55 @@
+<!--Read INSTRUCTIONS.txt first before writing any code in here-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator App</title>
+</head>
+<body>
+    <h1>Calculator App</h1>
+    
+    <p>Numbers:</p>
+    <p id="num1">5</p>
+    <p id="num2">10</p>
+    
+    <h2>Results:</h2>
+    
+    <h3>Add:</h3>
+    <h3 id="add-result"></h3>
+    
+    <h3>Subtract:</h3>
+    <h3 id="subtract-result"></h3>
+    
+    <h3>Multiply:</h3>
+    <h3 id="multiply-result"></h3>
+    
+    <h3>Divide:</h3>
+    <h3 id="divide-result"></h3>
+    
+    <h3>Exponentiation:</h3>
+    <h3 id="exponentiation-result"></h3>
+    
+    <script>
+        const num1 = document.getElementById('num1').textContent;
+        const num2 = document.getElementById('num2').textContent;
+        
+        fetch(`/calculator/add?num1=${num1}&num2=${num2}`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('add-result').textContent = data.result;
+            });
+        
+        fetch(`/calculator/subtract?num1=${num1}&num2=${num2}`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('subtract-result').textContent = data.result;
+            });
+        
+        fetch(`/calculator/multiply?num1=${num1}&num2=${num2}`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('multiply-result').textContent = data.result;
+            });
+        
+        fetch(`/calculator/divide?num1=${num1}&num)

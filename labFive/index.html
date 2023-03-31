@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+</head>
+<body>
+  <h1>Calculator</h1>
+  <form>
+    <input type="number" name="num1" value="2">
+    <select name="operator">
+      <option value="add">+</option>
+      <option value="subtract">-</option>
+      <option value="multiply">*</option>
+      <option value="divide">/</option>
+    </select>
+    <input type="number" name="num2" value="4">
+    <button type="submit">Calculate</button>
+  </form>
+
+  <h3>Results:</h3>
+  <div id="add-result"></div>
+  <div id="subtract-result"></div>
+  <div id="multiply-result"></div>
+  <div id="divide-result"></div>
+
+  <script>
+    const form = document.querySelector('form');
+    const addResult = document.getElementById('add-result');
+    const subtractResult = document.getElementById('subtract-result');
+    const multiplyResult = document.getElementById('multiply-result');
+    const divideResult = document.getElementById('divide-result');
+    const num1 = form.num1.value;
+    const num2 = form.num2.value;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const operator = form.operator.value;
+
+      fetch(`/calculator/${operator}?num1=${num1}&num2=${num2}`)
+        .then(res => res.json())
+        .then(data => {
+          switch (operator) {
+            case 'add':
+              addResult.innerText = `Addition: ${data.result}`;
+              break;
+            case 'subtract':
+              subtractResult.innerText = `Subtraction: ${data.result}`;
+              break;
+            case 'multiply':
+              multiplyResult.innerText = `Multiplication: ${data.result}`;
+              break;
+            case 'divide':
+              divideResult.innerText = `Division: ${data.result}`;
+              break;
+          }
+        })
+        .catch(error => console.error(error));
+    });
+  </script>
+</body>
+</html>

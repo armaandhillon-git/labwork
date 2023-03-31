@@ -1,16 +1,91 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Module 3 Fundamentals</title>
-    </head>
-    <body>
-        <h1>Module 3 Fundamentals</h1>
-        <button onclick="questionTwo()">Run Question Two</button><br>
-        <button onclick="questionFive()">Run Question Five</button><br>
-        <button onclick="questionSix()">Run Question Six</button><br>
-        <button onclick="questionSeven()">Run Question Seven</button><br>
-        <button onclick="questionEight()">Run Question Eight</button><br>
-        <button onclick="questionNine()">Run Question Nine</button><br>
-    </body>
-    <script src="answers.js"></script>
-</html>
+<html> </html>
+//What are the results of these expressions?//
+"" + 1 + 0 = "10"
+"" - 1 + 0 = -1
+true + false = 1
+6 / "3" = 2 
+"2" * "3" = 6
+4 + 5 + "px" = "9px"
+"$" + 4 + 5 = "$45"
+"4" - 2 = 2
+"4px" - 2 = NaN
+" -9 " + 5 = " -9 5"
+" -9 " - 5 = -14
+null + 1 = 1
+undefined + 1 = NaN
+" \t \n" - 2 = -2
+
+//Here's a code that asks the user for two numbers and shows their sum.
+It works incorrectly. The output in the example below is 12 (for default prompt
+values).
+Why? Fix it. The result should be 3.//
+prompt function returns the user input as a string, and the + 
+operator performs concatenation instead of addition if at least one operand is a string.
+correct code -
+let a = parseInt(prompt("First number?", 1));
+let b = parseInt(prompt("Second number?", 2));
+alert(a + b); // 3
+
+//What will be the result for these expressions?//
+5 > 4 is true
+"apple" > "pineapple" is false
+"2" > "12" is true
+undefined == null is true
+undefined === null is false
+null == "\n0\n" is false
+
+//Will an alert be shown?//
+yes "Hello"
+
+//Rewrite this if using the conditional operator '?'://
+let result = (a + b < 4) ? 'Below' : 'Over';
+
+//Write the delay method with arrow function, delay(func, ms)
+Should work like://
+const hello = (who) => console.log('Hello ' + who);
+const delayHello = delay(hello, 300);
+delayHello('world'); // will log "Hello world" after a 300ms delay
+
+//Write the function isEmpty(obj) which returns true if the object has no
+properties, false otherwise//
+const isEmpty = (obj) => {
+    for (let prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  //There’s a ladder object that allows to go up and down//
+  let ladder = {
+    step: 0,
+    up() {
+      this.step++;
+      return this;
+    },
+    down() {
+      this.step--;
+      return this;
+    },
+    showStep() {
+      console.log(this.step);
+      return this;
+    }
+  };
+  ladder.up().up().down().showStep();
+
+  //Create New Accumulator//
+  function Accumulator(startingValue) {
+    this.value = startingValue;
+    this.read = function() {
+      let input = +prompt('Enter a number:', 0);
+      if (isNaN(input)) {
+        console.log('Invalid input. Enter a valid number.');
+        this.read();
+      } else {
+        this.value += input;
+      }
+    };
+  }  
+  
